@@ -1,35 +1,33 @@
 import pytest
-
+import pyspark
 from chispa.column_comparer import assert_column_equality
-import pyspark.sql.functions as F
 from pyspark.sql import SparkSession
+
+from src.utils.functions import replace_null_values_col
 
 spark = (SparkSession.builder
   .master("local")
-  .appName("chispa")
+  .appName("test-functions")
   .getOrCreate())
 
-def remove_non_word_characters(col):
-    return F.regexp_replace(col, "[^\\w\\s]+", "")
-
-def test_remove_non_word_characters_short():
+def test_replace_null_values_for_cero():
     data = [
-        ("jo&&se", "jose"),
-        ("**li**", "li"),
-        ("#::luisa", "luisa"),
-        (None, None)
+        ("null", 0),
+        ("NULL", 0),
+        ("3", 3)
     ]
-    df = (spark.createDataFrame(data, ["name", "expected_name"])
-        .withColumn("clean_name", remove_non_word_characters(F.col("name"))))
-    assert_column_equality(df, "clean_name", "expected_name")
+    df = spark.createDataFrame(data, ["sells", "expected_sells"])
+    df = replace_null_values_col(df, "sells")
+    
+    assert_column_equality(df, "sells", "expected_sells")
 
-def test_remove_non_word_characters_nice_error():
+def check_replace_null_values_for_cero_data_type():
     data = [
-        ("matt7", "matt"),
-        ("bill&", "bill"),
-        ("isabela*", "isabela"),
-        (None, None)
+        ("null", 0),
+        ("NULL", 0),
+        ("3", 3)
     ]
-    df = (spark.createDataFrame(data, ["name", "expected_name"])
-        .withColumn("clean_name", remove_non_word_characters(F.col("name"))))
-    assert_column_equality(df, "clean_name", "expected_name")
+    df = spark.createDataFrame(data, ["sells", "expected_sells"])
+    df = replace_null_values_col(df, "sells")
+    
+    assert dict(df.dtypes)['sells'] == dict(df.dtypes)['expected_sells'], f"column data type is not as expected"

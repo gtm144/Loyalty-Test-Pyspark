@@ -1,25 +1,6 @@
-import pytest
+import pyspark
 
-from chispa.column_comparer import assert_column_equality
-import pyspark.sql.functions as F
-from pyspark.sql import SparkSession
+def replace_null_values_col(df, col_name):
+    df = df.fillna("",[col_name])
+    return df
 
-def remove_non_word_characters(col):
-    return F.regexp_replace(col, "[^\\w\\s]+", "")
-
-spark = (SparkSession.builder
-  .master("local")
-  .appName("chispa")
-  .getOrCreate())
-
-
-def test_remove_non_word_characters_short():
-    data = [
-        ("jo&&se", "jose"),
-        ("**li**", "li"),
-        ("#::luisa", "luisa"),
-        (None, None)
-    ]
-    df = (spark.createDataFrame(data, ["name", "expected_name"])
-        .withColumn("clean_name", remove_non_word_characters(F.col("name"))))
-    assert_column_equality(df, "clean_name", "expected_name")
