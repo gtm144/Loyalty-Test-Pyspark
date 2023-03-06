@@ -1,6 +1,6 @@
 name: Spark Function Tests
 on: 
-  push:
+  pull_request:
     branches:
       - 'qa'
 jobs:
