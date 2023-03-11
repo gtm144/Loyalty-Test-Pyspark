@@ -18,3 +18,6 @@
    54  la
    74  ./sbin/stop-master.sh
    75  ./sbin/stop-worker.sh
+sudo docker build -t my_pyspark_de .
+sudo docker run -it -p 8888:8888 -p 4040:4040 my_pyspark_de jupyter notebook --ip 0.0.0.0 --no-browser --allow-root
+

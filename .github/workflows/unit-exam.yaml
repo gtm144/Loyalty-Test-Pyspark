@@ -11,6 +11,4 @@ jobs:
       - name: Build the Docker image
         run: docker build -t my-image .
       - name: Run tests
-        run: docker run -d my-image
-      - name: Test files
-        run: docker exec my-image pytest
+        run: docker run -it my-image pytest
