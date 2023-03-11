@@ -1,4 +1,4 @@
-name: Run unit docker tests
+name: Run unit pyspark unit tests
 
 on: [ push ]
 
@@ -8,7 +8,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Build the Docker image
-        run: docker build -t my-image .
+      - name: Build Docker image
+        run: docker build -t my-pyspark .
       - name: Run tests
-        run: docker run my-image pytest
+        run: docker run my-pyspark pytest

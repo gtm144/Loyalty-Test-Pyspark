@@ -15,6 +15,6 @@ RUN apt-get update \
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/
 ENV PYSPARK_PYTHON /opt/conda/bin/python
 
-RUN pip install --no-cache-dir -r tests/requirements-dev.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 EXPOSE 4040
