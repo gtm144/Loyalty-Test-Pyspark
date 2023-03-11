@@ -1,0 +1,14 @@
+name: Run unit docker tests
+
+on: [ push ]
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    container:
+      image: comienza
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Run tests
+        run: pytest
