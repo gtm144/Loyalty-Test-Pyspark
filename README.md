@@ -1,6 +1,14 @@
 # Loyalty-Test-Pyspark
 A test design to verify my skills on Pyspark. Here, the challenge comes to create all procedures as its explained next.
 
+# Development Workflow
+This project have a continous development (CD) workflow in order to robust the code. For many data projects, I use the following sequence:
+Development branch (dev) &rarr; Quality Assurance branch (qa) &rarr; Production branch (prod
+
+**- Development Branch** All tryouts, tests, experiments will be handle in this branch. Once, final codebase is ready, it will be send to quality assurance. 
+**- QA Branch** When pull requests arrive to this branch, github actions will perform unit tests on the module functions. Once it gets accepted, data would be put on manual quality tests. If many of those tests can be automated they will be integraget to github actions. At the end, when everything is good to go it will be send to production.  
+**- Production Branch** Final code base will be written here.
+
 ## Basic Toolset
 Candidates may use any cloud storage and compute platform of their choice.
 
@@ -45,4 +53,14 @@ over year (YoY) for the following metrics:
 - Sales, units, distinct count of transactions, distinct count of collectors
 - Display the metrics for loyalty customers, non-loyalty customers and overall
 - Consider how the president of ACME might use the dashboard and any further 
-questions he may have that can be answered through the use of the dashboard
+questions he may have that can be answered through the use of the dashboard.
+
+---
+# Development Workflow
+This project have a continous development (CD) workflow in order to robust the code. For many data projects, I use the following sequence:
+Development branch (dev) &rarr; Quality Assurance branch (qa) &rarr; Production branch (prod
+
+**- Development Branch** All tryouts, tests, experiments will be handle in this branch. Once, final codebase is ready, it will be send to quality assurance. 
+**- QA Branch** When pull requests arrive to this branch, github actions will perform unit tests on the module functions. Once it gets accepted, data would be put on manual quality tests. If many of those tests can be automated they will be integraget to github actions. At the end, when everything is good to go it will be send to production.  
+**- Production Branch** Final code base will be written here.
+
